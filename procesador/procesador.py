@@ -1,5 +1,6 @@
 # Imports
 import file_handler
+import structures
 
 # Variables
 fst_lev_fld = ['pmEA-ALIO', 'seqEA-CLEI']
@@ -24,6 +25,11 @@ generacion  = 'GEN'
 tiempo      = 'TIEMPO'
 greedy      = 'GREEDY'
 
+# Resultados
+res_generaciones = structures.res_structure()
+res_tiempo = structures.res_structure()
+
+
 # Comportamiento principal
 for l1 in fst_lev_fld:
   for l2 in snd_lev_fld: 
@@ -31,4 +37,4 @@ for l1 in fst_lev_fld:
       for l4 in fth_lev_fld:
         for file_name in file_names:
           file_ref = '../{0}/{1}/{2}/{3}/{4}'.format(l1, l2, l3, l4, file_name)
-          file = file_handler.read_file(file_ref)
+          # file = file_handler.read_file(file_ref)
