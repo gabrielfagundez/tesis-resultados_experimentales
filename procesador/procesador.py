@@ -21,20 +21,87 @@ file_names  = [
               ]
 
 # Prefijos
-generacion  = 'GEN'
-tiempo      = 'TIEMPO'
-greedy      = 'GREEDY'
+pref_generacion  = 'GEN'
+pref_tiempo      = 'TIEMPO'
+pref_greedy      = 'GREEDY'
 
 # Resultados
-res_generaciones = structures.res_structure()
-res_tiempo = structures.res_structure()
+res_generaciones  = structures.res_structure()
+res_tiempo        = structures.res_structure()
+res_greedy        = structures.res_structure()
 
 
 # Comportamiento principal
 for l1 in fst_lev_fld:
+  
+  # Defino alio / clei
+  paper = 'clei'
+  if 'ALIO' in l1:
+    paper = 'alio'
+
   for l2 in snd_lev_fld: 
+
+    # Defino aleatorio / greedy
+    inicializacion = 'aleatorio'
+    if 'greedy' in l2:
+      inicializacion = 'greedy'
+
     for l3 in trd_lev_fld: 
+      
+      # Defino tamano
+      tamano = 'chicas'
+      if 'Medianas' in l3:
+        tamano = 'medianas'
+      if 'Grandes' in l3:
+        tamano = 'grandes'
+      if 'Montevide' in l3:
+        tamano = 'montevideo'
+
       for l4 in fth_lev_fld:
+
+        # Defino numero de instancia
+        instancia = '1'
+        if '2/1' in l4:
+          instancia = '2'
+        if '3/1' in l4:
+          instancia = '3'
+        if '4/1' in l4:
+          instancia = '4'
+        if '5/1' in l4:
+          instancia = '5'
+        if '6/1' in l4:
+          instancia = '6'
+
         for file_name in file_names:
           file_ref = '../{0}/{1}/{2}/{3}/{4}'.format(l1, l2, l3, l4, file_name)
-          # file = file_handler.read_file(file_ref)
+          file = file_handler.read_file(file_ref)
+
+          # Variables: paper, inicializacion, tamano & instancia
+
+          for num, line in enumerate(file, 1):
+            if pref_generacion in line:
+              # Formato: ['GEN', '10000', '404.130000']
+              splitted_line = line.split('\n')[0].split(' ')
+
+              # Agrego al arreglo
+              res_generaciones[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
+
+            if pref_tiempo in line:
+              # Formato: ['TIEMPO', '0', '655.870000']
+              splitted_line = line.split('\n')[0].split(' ')
+
+              # Agrego al arreglo
+              res_tiempo[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
+
+            if pref_greedy in line:
+              # Formato: ['GREEDY', '15', '0.277533']
+              splitted_line = line.split('\n')[0].split(' ')
+
+              # Agrego al arreglo
+              res_greedy[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
+              
+
+print res_greedy
+
+
+

@@ -1,109 +1,253 @@
 def res_structure():
-  generaciones = {
+  structure = {
   'chicas': {
       '1': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '2': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '3': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '4': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '5': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '6': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       }
     },
     'medianas': {
       '1': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '2': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '3': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '4': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '5': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '6': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       }
     },
     'grandes': {
       '1': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '2': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '3': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '4': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '5': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '6': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       }
     },
     'montevideo': {
       '1': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '2': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '3': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '4': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '5': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       },
       '6': {
-        'alio': {},
-        'clei': {}
+        'alio': {
+          'greedy': [],
+          'aleatorio': []
+        },
+        'clei': {
+          'greedy': [],
+          'aleatorio': []
+        }
       }
     }
   }
 
-  return generaciones
+  return structure
