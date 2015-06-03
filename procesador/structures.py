@@ -251,3 +251,44 @@ def res_structure():
   }
 
   return structure
+
+
+def estructura_tiempo_maximo_por_tamano():
+  structure = {
+    'chicas': {
+      'alio': [],
+      'clei': []
+    },
+    'medianas': {
+      'alio': [],
+      'clei': []
+    },
+    'grandes': {
+      'alio': [],
+      'clei': []
+    },
+    'montevideo': {
+      'alio': [],
+      'clei': []
+    }
+  }
+
+  return structure
+
+def estructura_tiempo_maximo_por_instancia():
+  structure = {
+    'alio': {
+      'chicas': [],
+      'medianas': [],
+      'grandes': [],
+      'montevideo': []
+    },
+    'clei': {
+      'chicas': [],
+      'medianas': [],
+      'grandes': [],
+      'montevideo': []
+    }
+  }
+
+  return structure  

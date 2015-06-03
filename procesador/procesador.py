@@ -1,6 +1,12 @@
 # Imports
 import file_handler
 import structures
+import tabla_por_instancia
+import tabla_por_tamano
+
+# Librerias
+import argparse
+import numpy
 
 # Variables
 fst_lev_fld = ['pmEA-ALIO', 'seqEA-CLEI']
@@ -29,6 +35,9 @@ pref_greedy      = 'GREEDY'
 res_generaciones  = structures.res_structure()
 res_tiempo        = structures.res_structure()
 res_greedy        = structures.res_structure()
+
+res_tiempo_maximo_por_instancia = structures.estructura_tiempo_maximo_por_instancia()
+res_tiempo_maximo_por_tamano    = structures.estructura_tiempo_maximo_por_tamano()
 
 
 # Comportamiento principal
@@ -77,31 +86,39 @@ for l1 in fst_lev_fld:
           file = file_handler.read_file(file_ref)
 
           # Variables: paper, inicializacion, tamano & instancia
+          ultimo_tiempo = ''
 
-          for num, line in enumerate(file, 1):
-            if pref_generacion in line:
-              # Formato: ['GEN', '10000', '404.130000']
-              splitted_line = line.split('\n')[0].split(' ')
+          if file != []:
+            for num, line in enumerate(file, 1):
+              if pref_generacion in line:
+                # Formato: ['GEN', '10000', '404.130000']
+                splitted_line = line.split('\n')[0].split(' ')
 
-              # Agrego al arreglo
-              res_generaciones[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
+                # Agrego al arreglo
+                res_generaciones[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
 
-            if pref_tiempo in line:
-              # Formato: ['TIEMPO', '0', '655.870000']
-              splitted_line = line.split('\n')[0].split(' ')
+              if pref_tiempo in line:
+                # Formato: ['TIEMPO', '0', '655.870000']
+                splitted_line = line.split('\n')[0].split(' ')
+                ultimo_tiempo = splitted_line[1]
 
-              # Agrego al arreglo
-              res_tiempo[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
+                # Agrego al arreglo
+                res_tiempo[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
 
-            if pref_greedy in line:
-              # Formato: ['GREEDY', '15', '0.277533']
-              splitted_line = line.split('\n')[0].split(' ')
+              if pref_greedy in line:
+                # Formato: ['GREEDY', '15', '0.277533']
+                splitted_line = line.split('\n')[0].split(' ')
 
-              # Agrego al arreglo
-              res_greedy[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
+                # Agrego al arreglo
+                res_greedy[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
+            
+            # Agrego ultimo tiempo
+            if inicializacion == 'greedy':
+              res_tiempo_maximo_por_tamano[tamano][paper].append(float(ultimo_tiempo))
               
 
-print res_greedy
+# Genero tabla por instancia
+tabla_por_tamano.generar(res_greedy, res_tiempo_maximo_por_tamano)
 
 
 
