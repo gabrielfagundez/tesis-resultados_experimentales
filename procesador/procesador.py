@@ -115,10 +115,14 @@ for l1 in fst_lev_fld:
             # Agrego ultimo tiempo
             if inicializacion == 'greedy':
               res_tiempo_maximo_por_tamano[tamano][paper].append(float(ultimo_tiempo))
+              res_tiempo_maximo_por_instancia[tamano][instancia][paper].append(float(ultimo_tiempo))
               
 
 # Genero tabla por instancia
 tabla_por_tamano.generar(res_greedy, res_tiempo_maximo_por_tamano)
+
+# Genero tabla por instancia
+tabla_por_instancia.generar(res_greedy, res_tiempo_maximo_por_instancia)
 
 
 
