@@ -10,7 +10,7 @@ import numpy
 
 # Variables
 fst_lev_fld = ['pmEA-ALIO', 'seqEA-CLEI']
-snd_lev_fld = ['aleatorio', 'greedy']
+snd_lev_fld = ['greedy', 'aleatorio']
 trd_lev_fld = ['1-Chicas', '2-Medianas', '3-Grandes', '4-Montevideo']
 fth_lev_fld = ['1/1', '2/1', '3/1', '4/1', '5/1', '6/1']
 file_names  = [
@@ -39,6 +39,8 @@ res_greedy        = structures.res_structure()
 res_tiempo_maximo_por_instancia = structures.estructura_tiempo_maximo_por_instancia()
 res_tiempo_maximo_por_tamano    = structures.estructura_tiempo_maximo_por_tamano()
 
+res_greedy_maximo_por_instancia = structures.estructura_tiempo_maximo_por_instancia()
+res_greedy_maximo_por_tamano    = structures.estructura_tiempo_maximo_por_tamano()
 
 # Comportamiento principal
 for l1 in fst_lev_fld:
@@ -87,12 +89,16 @@ for l1 in fst_lev_fld:
 
           # Variables: paper, inicializacion, tamano & instancia
           ultimo_tiempo = ''
+          val_greedy = 0
+          val_final = 0
 
           if file != []:
             for num, line in enumerate(file, 1):
               if pref_generacion in line:
                 # Formato: ['GEN', '10000', '404.130000']
                 splitted_line = line.split('\n')[0].split(' ')
+                if splitted_line[1] == '0':
+                  val_greedy = float(splitted_line[2])
 
                 # Agrego al arreglo
                 res_generaciones[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
@@ -101,6 +107,7 @@ for l1 in fst_lev_fld:
                 # Formato: ['TIEMPO', '0', '655.870000']
                 splitted_line = line.split('\n')[0].split(' ')
                 ultimo_tiempo = splitted_line[1]
+                val_final = float(splitted_line[2])
 
                 # Agrego al arreglo
                 res_tiempo[tamano][instancia][paper][inicializacion].append([splitted_line[1], splitted_line[2]])
@@ -117,12 +124,17 @@ for l1 in fst_lev_fld:
               res_tiempo_maximo_por_tamano[tamano][paper].append(float(ultimo_tiempo))
               res_tiempo_maximo_por_instancia[tamano][instancia][paper].append(float(ultimo_tiempo))
               
+              # Calculo la mejora total sobre Greedy
+              mejora_greedy = (val_greedy - val_final) / val_greedy * 100
+              res_greedy_maximo_por_tamano[tamano][paper].append(mejora_greedy)
+              res_greedy_maximo_por_instancia[tamano][instancia][paper].append(mejora_greedy)
+              
 
 # Genero tabla por instancia
-tabla_por_tamano.generar(res_greedy, res_tiempo_maximo_por_tamano)
+tabla_por_tamano.generar(res_greedy_maximo_por_tamano, res_tiempo_maximo_por_tamano)
 
 # Genero tabla por instancia
-tabla_por_instancia.generar(res_greedy, res_tiempo_maximo_por_instancia)
+tabla_por_instancia.generar(res_greedy_maximo_por_instancia, res_tiempo_maximo_por_instancia)
 
 
 

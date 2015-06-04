@@ -8,15 +8,15 @@ def generar(res_greedy, res_tiempo):
     for ev in ['Mejora Greedy', 'Tiempo']:
       for op in [1, 2, 3]:
         s_op = operacion(ev, op)
-        val_clei = res(ev, op, [0], res_tiempo[tamano]['clei'])
-        val_alio = res(ev, op, [0], res_tiempo[tamano]['alio'])
+        val_clei = res(ev, op, res_greedy[tamano]['clei'], res_tiempo[tamano]['clei'])
+        val_alio = res(ev, op, res_greedy[tamano]['alio'], res_tiempo[tamano]['alio'])
         
         arr = [tamano, ev, s_op, val_clei, val_alio]
         arreglo_final.append(arr)
 
 
   header = ['', '', '', 'CLEI', 'ALIO']
-  print tabulate(arreglo_final, header, tablefmt="fancy_grid")
+  print tabulate(arreglo_final, header, tablefmt="latex")
 
   return ''
 

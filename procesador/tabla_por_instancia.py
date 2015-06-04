@@ -13,8 +13,8 @@ def generar(res_greedy, res_tiempo):
         for op in [1, 2, 3]:
           if not(tamano == 'montevideo' and ins == '5' or tamano == 'montevideo' and ins == '6'):
             s_op = operacion(ev, op)
-            val_clei = res(ev, op, [0], res_tiempo[tamano][ins]['clei'])
-            val_alio = res(ev, op, [0], res_tiempo[tamano][ins]['alio'])
+            val_clei = res(ev, op, res_greedy[tamano][ins]['alio'], res_tiempo[tamano][ins]['clei'])
+            val_alio = res(ev, op, res_greedy[tamano][ins]['alio'], res_tiempo[tamano][ins]['alio'])
             
             arr = [tamano, ins, ev, s_op, val_clei, val_alio]
             if tamano == 'chicas':
@@ -28,16 +28,16 @@ def generar(res_greedy, res_tiempo):
 
 
   header = ['Chicas', 'Instancia', '', '', 'CLEI', 'ALIO']
-  print tabulate(arreglo_final_chicas, header, tablefmt="fancy_grid")
+  print tabulate(arreglo_final_chicas, header, tablefmt="latex")
   
   header = ['Medianas', 'Instancia', '', '', 'CLEI', 'ALIO']
-  print tabulate(arreglo_final_medianas, header, tablefmt="fancy_grid")
+  print tabulate(arreglo_final_medianas, header, tablefmt="latex")
   
   header = ['Grandes', 'Instancia', '', '', 'CLEI', 'ALIO']
-  print tabulate(arreglo_final_grandes, header, tablefmt="fancy_grid")
+  print tabulate(arreglo_final_grandes, header, tablefmt="latex")
   
   header = ['Montevideo', 'Instancia', '', '', 'CLEI', 'ALIO']
-  print tabulate(arreglo_final_montevideo, header, tablefmt="fancy_grid")
+  print tabulate(arreglo_final_montevideo, header, tablefmt="latex")
 
   return ''
 
