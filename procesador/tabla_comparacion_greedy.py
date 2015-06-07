@@ -48,7 +48,7 @@ def generar(res_final):
         ]
         arreglo_final.append(arr)
 
-  print tabulate(arreglo_final, tablefmt="fancy_grid")
+  print tabulate(arreglo_final, tablefmt="latex")
 
   return 0;
   
