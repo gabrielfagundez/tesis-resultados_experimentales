@@ -151,5 +151,20 @@ for l1 in fst_lev_fld:
 # fitness_over_time.generar(chart_fitness_over_time)
 
 # Genero grafica de mejora de greedy
-grafica_mejora_greedy.generar(chart_mejora_greedy)
-grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy)
+ejecucion = {
+  'chicas': {
+    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+  },
+  'medianas': {
+    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+  },
+  'grandes': {
+    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+  },
+  'montevideo': {
+    '1': '1', '2': '1', '3': '1', '4': '1'
+  }
+}
+
+grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion)
+grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion)

@@ -13,7 +13,7 @@ colors = [
   'b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k','b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k','b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k'
 ]
 
-def generar(data):
+def generar(data, ejecucion):
   bottom = [0, 0, 0, 0, 0, 0]
   for tamano in ['chicas', 'medianas', 'grandes']:
     for paper in ['clei']:
@@ -21,42 +21,42 @@ def generar(data):
         # Dibujo la grafica
         superacion_greedy = []
 
-        data1 = data[tamano]['1'][paper]['tiempo']['1']
+        data1 = data[tamano]['1'][paper]['tiempo'][ejecucion[tamano]['1']]
         if len(data1) > (percentaje-1):
           superacion_greedy.append(data1[percentaje-1] - bottom[0])
           legend[percentaje-1] = True
         else:
           superacion_greedy.append(0)
 
-        data2 = data[tamano]['2'][paper]['tiempo']['1']
+        data2 = data[tamano]['2'][paper]['tiempo'][ejecucion[tamano]['2']]
         if len(data2) > (percentaje-1):
           superacion_greedy.append(data2[percentaje-1] - bottom[1])
           legend[percentaje-1] = True
         else:
           superacion_greedy.append(0)
         
-        data3 = data[tamano]['3'][paper]['tiempo']['1']
+        data3 = data[tamano]['3'][paper]['tiempo'][ejecucion[tamano]['3']]
         if len(data3) > (percentaje-1):
           superacion_greedy.append(data3[percentaje-1] - bottom[2])
           legend[percentaje-1] = True
         else:
           superacion_greedy.append(0)
 
-        data4 = data[tamano]['4'][paper]['tiempo']['1']
+        data4 = data[tamano]['4'][paper]['tiempo'][ejecucion[tamano]['4']]
         if len(data4) > (percentaje-1):
           superacion_greedy.append(data4[percentaje-1] - bottom[3])
           legend[percentaje-1] = True
         else:
           superacion_greedy.append(0)
 
-        data5 = data[tamano]['5'][paper]['tiempo']['1']
+        data5 = data[tamano]['5'][paper]['tiempo'][ejecucion[tamano]['5']]
         if len(data5) > (percentaje-1):
           superacion_greedy.append(data5[percentaje-1] - bottom[4])
           legend[percentaje-1] = True
         else:
           superacion_greedy.append(0)
 
-        data6 = data[tamano]['6'][paper]['tiempo']['1']
+        data6 = data[tamano]['6'][paper]['tiempo'][ejecucion[tamano]['6']]
         if len(data6) > (percentaje-1):  
           superacion_greedy.append(data6[percentaje-1] - bottom[5])
           legend[percentaje-1] = True
@@ -101,7 +101,7 @@ def generar(data):
   return 0
 
 
-def generar_montevideo(data):
+def generar_montevideo(data, ejecucion):
   bottom = [0, 0, 0, 0]
   for tamano in ['montevideo']:
     for paper in ['clei']:
@@ -109,28 +109,28 @@ def generar_montevideo(data):
         # Dibujo la grafica
         superacion_greedy = []
 
-        data1 = data[tamano]['1'][paper]['tiempo']['1']
+        data1 = data[tamano]['1'][paper]['tiempo'][ejecucion[tamano]['1']]
         if len(data1) > (percentaje-1):
           superacion_greedy.append(data1[percentaje-1] - bottom[0])
           legend[percentaje-1] = True
         else:
           superacion_greedy.append(0)
 
-        data2 = data[tamano]['2'][paper]['tiempo']['1']
+        data2 = data[tamano]['2'][paper]['tiempo'][ejecucion[tamano]['2']]
         if len(data2) > (percentaje-1):
           superacion_greedy.append(data2[percentaje-1] - bottom[1])
           legend[percentaje-1] = True
         else:
           superacion_greedy.append(0)
         
-        data3 = data[tamano]['3'][paper]['tiempo']['1']
+        data3 = data[tamano]['3'][paper]['tiempo'][ejecucion[tamano]['3']]
         if len(data3) > (percentaje-1):
           superacion_greedy.append(data3[percentaje-1] - bottom[2])
           legend[percentaje-1] = True
         else:
           superacion_greedy.append(0)
 
-        data4 = data[tamano]['4'][paper]['tiempo']['1']
+        data4 = data[tamano]['4'][paper]['tiempo'][ejecucion[tamano]['4']]
         if len(data4) > (percentaje-1):
           superacion_greedy.append(data4[percentaje-1] - bottom[3])
           legend[percentaje-1] = True
