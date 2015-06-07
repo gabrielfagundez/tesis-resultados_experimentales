@@ -4,6 +4,7 @@ import structures
 import tabla_por_instancia
 import tabla_por_tamano
 import tabla_comparacion_greedy
+import fitness_over_time
 
 # Librerias
 import argparse
@@ -32,14 +33,15 @@ pref_generacion  = 'GEN'
 pref_tiempo      = 'TIEMPO'
 pref_greedy      = 'GREEDY'
 
-# Resultados
+# Resultados para tablas
 res_fitness = structures.res_structure()
-
 res_tiempo_maximo_por_instancia = structures.estructura_tiempo_maximo_por_instancia()
 res_tiempo_maximo_por_tamano    = structures.estructura_tiempo_maximo_por_tamano()
-
 res_greedy_maximo_por_instancia = structures.estructura_tiempo_maximo_por_instancia()
 res_greedy_maximo_por_tamano    = structures.estructura_tiempo_maximo_por_tamano()
+
+# Resultados para graficas
+chart_fitness_over_time = structures.chart_fitness_over_time()
 
 # Comportamiento principal
 for l1 in fst_lev_fld:
@@ -105,6 +107,11 @@ for l1 in fst_lev_fld:
                 ultimo_tiempo = splitted_line[1]
                 val_final = float(splitted_line[2])
 
+                if inicializacion == 'greedy':
+                  variable = file_name.split('.')[0].split('salida_')[1]
+                  chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[1]))
+                  chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[2]))
+
               if pref_greedy in line:
                 # Formato: ['GREEDY', '15', '0.277533']
                 splitted_line = line.split('\n')[0].split(' ')
@@ -125,11 +132,13 @@ for l1 in fst_lev_fld:
               
 
 # Genero tabla comparacion de inicializaciones
-tabla_comparacion_greedy.generar(res_fitness)
+# tabla_comparacion_greedy.generar(res_fitness)
 
 # Genero tabla por tamano
-tabla_por_tamano.generar(res_greedy_maximo_por_tamano, res_tiempo_maximo_por_tamano)
+# tabla_por_tamano.generar(res_greedy_maximo_por_tamano, res_tiempo_maximo_por_tamano)
 
 # Genero tabla por instancia
-tabla_por_instancia.generar(res_greedy_maximo_por_instancia, res_tiempo_maximo_por_instancia)
+# tabla_por_instancia.generar(res_greedy_maximo_por_instancia, res_tiempo_maximo_por_instancia)
 
+# Genero tabla de evolucion del fitness
+fitness_over_time.generar(chart_fitness_over_time)
