@@ -5,6 +5,7 @@ import tabla_por_instancia
 import tabla_por_tamano
 import tabla_comparacion_greedy
 import fitness_over_time
+import grafica_mejora_greedy
 
 # Librerias
 import argparse
@@ -42,6 +43,7 @@ res_greedy_maximo_por_tamano    = structures.estructura_tiempo_maximo_por_tamano
 
 # Resultados para graficas
 chart_fitness_over_time = structures.chart_fitness_over_time()
+chart_mejora_greedy     = structures.chart_fitness_over_time()
 
 # Comportamiento principal
 for l1 in fst_lev_fld:
@@ -116,6 +118,11 @@ for l1 in fst_lev_fld:
                 # Formato: ['GREEDY', '15', '0.277533']
                 splitted_line = line.split('\n')[0].split(' ')
 
+                if inicializacion == 'greedy':
+                  variable = file_name.split('.')[0].split('salida_')[1]
+                  chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[1]))
+                  chart_mejora_greedy[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[2]))
+
             # Agrego valores para tabla comparativa
             res_fitness[tamano][instancia][paper][inicializacion].append(val_final)
 
@@ -140,5 +147,9 @@ for l1 in fst_lev_fld:
 # Genero tabla por instancia
 # tabla_por_instancia.generar(res_greedy_maximo_por_instancia, res_tiempo_maximo_por_instancia)
 
-# Genero tabla de evolucion del fitness
-fitness_over_time.generar(chart_fitness_over_time)
+# Genero grafica de evolucion del fitness
+# fitness_over_time.generar(chart_fitness_over_time)
+
+# Genero grafica de mejora de greedy
+grafica_mejora_greedy.generar(chart_mejora_greedy)
+grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy)
