@@ -140,7 +140,7 @@ for l1 in fst_lev_fld:
               
 
 # Genero tabla comparacion de inicializaciones
-# tabla_comparacion_greedy.generar(res_fitness)
+tabla_comparacion_greedy.generar(res_fitness)
 
 # Genero tabla por tamano
 # tabla_por_tamano.generar(res_greedy_maximo_por_tamano, res_tiempo_maximo_por_tamano)
@@ -170,4 +170,4 @@ for l1 in fst_lev_fld:
 # grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion)
 
 # Genero grafica de promedio/mejor costo
-grafica_prom_best.generar(res_fitness)
+# grafica_prom_best.generar(res_fitness)
