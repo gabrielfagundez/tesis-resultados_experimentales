@@ -79,7 +79,7 @@ def generar(data, ejecucion):
     legend_names = []
     for idx, val in enumerate(legend):
       name = "Supera {0}%".format(idx*5)
-      if val and idx != 0:
+      if val:
         legend_names.append(name)
       
     plt.legend(charts, legend_names)
