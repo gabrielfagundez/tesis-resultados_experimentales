@@ -97,6 +97,8 @@ for l1 in fst_lev_fld:
           val_final = 0
 
           if file != []:
+            chart_encontre_tiempo_final = False
+
             for num, line in enumerate(file, 1):
               if pref_generacion in line:
                 # Formato: ['GEN', '10000', '404.130000']
@@ -110,10 +112,40 @@ for l1 in fst_lev_fld:
                 ultimo_tiempo = splitted_line[1]
                 val_final = float(splitted_line[2])
 
-                if inicializacion == 'greedy':
+                if inicializacion == 'greedy' and paper == 'clei':
                   variable = file_name.split('.')[0].split('salida_')[1]
                   chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[1]))
                   chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[2]))
+                if inicializacion == 'greedy' and paper == 'alio':
+                  variable = file_name.split('.')[0].split('salida_')[1]
+                  num = float(splitted_line[1])
+                  
+                  if chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable] == []:
+                    chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[1]))
+                    chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[2]))
+                  else:
+                    if num == int(num):
+                      # Caso de numero entero
+                      if chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable][-1] != float(splitted_line[1]):
+                        # Nuevo entero encontrado
+                        chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[1]))
+                        chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[2]))
+                      else:
+                        # Entero ya encontrado
+                        if float(splitted_line[2]) < chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable][-1]:
+                          chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable][-1] = float(splitted_line[2])
+
+                    else:
+                      # Caso final
+                      if chart_encontre_tiempo_final: 
+                        if float(splitted_line[1]) > chart_tiempo_final:
+                          chart_tiempo_final = float(splitted_line[1])
+                        if float(splitted_line[2]) < chart_fitness_final:
+                          chart_fitness_final = float(splitted_line[2])
+                      else:
+                        chart_encontre_tiempo_final = True
+                        chart_tiempo_final = float(splitted_line[1])
+                        chart_fitness_final = float(splitted_line[2])
 
               if pref_greedy in line:
                 # Formato: ['GREEDY', '15', '0.277533']
@@ -123,6 +155,10 @@ for l1 in fst_lev_fld:
                   variable = file_name.split('.')[0].split('salida_')[1]
                   chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[1]))
                   chart_mejora_greedy[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[2]))
+
+            if inicializacion == 'greedy' and paper == 'alio':      
+              chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(chart_tiempo_final)
+              chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(chart_fitness_final)
 
             # Agrego valores para tabla comparativa
             res_fitness[tamano][instancia][paper][inicializacion].append(val_final)
@@ -149,7 +185,7 @@ for l1 in fst_lev_fld:
 # tabla_por_instancia.generar(res_greedy_maximo_por_instancia, res_tiempo_maximo_por_instancia)
 
 # Genero grafica de evolucion del fitness
-# fitness_over_time.generar(chart_fitness_over_time)
+fitness_over_time.generar(chart_fitness_over_time)
 
 # Genero grafica de mejora de greedy
 # ejecucion = {
@@ -170,5 +206,5 @@ for l1 in fst_lev_fld:
 # grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion)
 
 # Genero grafica de promedio/mejor costo
-grafica_prom_best.generar(res_fitness)
-grafica_prom_best.generar_montevideo(res_fitness)
+# grafica_prom_best.generar(res_fitness)
+# grafica_prom_best.generar_montevideo(res_fitness)
