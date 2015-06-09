@@ -236,8 +236,17 @@ ejecucion = {
     '1': '1', '2': '1', '3': '1', '4': '1'
   }
 }
-grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion)
-grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion)
+# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'chicas', 'clei', 1)
+# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'medianas', 'clei', 1)
+
+# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'grandes', 'clei', 1)
+# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'chicas', 'alio', 1)
+
+# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'medianas', 'alio', 1)
+# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'grandes', 'alio', 2)
+
+# grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion, 'montevideo', 'clei', 2)
+# grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion, 'montevideo', 'alio', 1)
 
 # Genero grafica de promedio/mejor costo
 # grafica_prom_best.generar(res_fitness)
