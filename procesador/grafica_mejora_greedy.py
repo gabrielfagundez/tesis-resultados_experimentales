@@ -8,7 +8,7 @@ legend = [
 ]
 charts = []
 colors = [
-  '#1abc9c', '#3498db', '#9b59b6', '#34495e', '#27ae60', '#e74c3c', '#95a5a6', '#f39c12', '#2ecc71', '#bdc3c7',
+  '#1abc9c', '#3498db', '#9b59b6', '#34495e', '#e74c3c', '#95a5a6', '#f39c12', '#2ecc71', '#bdc3c7',
   # Mas colores
   'b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k','b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k','b', 'g', 'r', 'c', 'm', 'y', 'k', 'b', 'g', 'r', 'c', 'm', 'y', 'k'
 ]
@@ -16,7 +16,7 @@ colors = [
 def generar(data, ejecucion):
   bottom = [0, 0, 0, 0, 0, 0]
   for tamano in ['chicas', 'medianas', 'grandes']:
-    for paper in ['clei']:
+    for paper in ['clei', 'alio']:
       for percentaje in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]:
         # Dibujo la grafica
         superacion_greedy = []
@@ -85,7 +85,7 @@ def generar(data, ejecucion):
     plt.legend(charts, legend_names)
           
     # Guardo una imagen
-    name = "grafica_mejora_greedy/{0}.pdf".format(tamano)
+    name = "grafica_mejora_greedy/{0}_{1}.pdf".format(tamano, paper)
     pylab.savefig(name)
 
     # Limpio la figura
@@ -104,7 +104,7 @@ def generar(data, ejecucion):
 def generar_montevideo(data, ejecucion):
   bottom = [0, 0, 0, 0]
   for tamano in ['montevideo']:
-    for paper in ['clei']:
+    for paper in ['clei', 'alio']:
       for percentaje in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]:
         # Dibujo la grafica
         superacion_greedy = []
@@ -159,7 +159,7 @@ def generar_montevideo(data, ejecucion):
     plt.legend(charts, legend_names)
           
     # Guardo una imagen
-    name = "grafica_mejora_greedy/{0}.pdf".format(tamano)
+    name = "grafica_mejora_greedy/{0}_{1}.pdf".format(tamano, paper)
     pylab.savefig(name)
 
     # Limpio la figura

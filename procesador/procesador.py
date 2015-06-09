@@ -106,6 +106,9 @@ for l1 in fst_lev_fld:
                 if splitted_line[1] == '0':
                   val_greedy = float(splitted_line[2])
 
+
+
+              # ========================= TIEMPO =========================
               if pref_tiempo in line:
                 # Formato: ['TIEMPO', '0', '655.870000']
                 splitted_line = line.split('\n')[0].split(' ')
@@ -147,14 +150,45 @@ for l1 in fst_lev_fld:
                         chart_tiempo_final = float(splitted_line[1])
                         chart_fitness_final = float(splitted_line[2])
 
+
+
+              # ========================= GREEDY =========================
               if pref_greedy in line:
                 # Formato: ['GREEDY', '15', '0.277533']
                 splitted_line = line.split('\n')[0].split(' ')
+                variable = file_name.split('.')[0].split('salida_')[1]
 
-                if inicializacion == 'greedy':
-                  variable = file_name.split('.')[0].split('salida_')[1]
+                if inicializacion == 'greedy' and paper == 'clei':
                   chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[1]))
                   chart_mejora_greedy[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[2]))
+
+                if inicializacion == 'greedy' and paper == 'alio':
+                  if chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable] == []:
+                    chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[1]))
+                    chart_mejora_greedy[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[2]))
+                  else:
+                    encontre = False
+                    indice_encontre = 0
+                    # Chequeo si ya agregue el greedy
+                    while not encontre and (indice_encontre < len(chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable])):
+                      if chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable][indice_encontre] == float(splitted_line[1]):
+                        encontre = True
+                      indice_encontre += 1
+                    indice_encontre -= 1  
+
+
+                    if not encontre:
+                      # Nuevo entero encontrado
+                      chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[1]))
+                      chart_mejora_greedy[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[2]))
+                    else:
+                      a = 0
+                      # Entero ya encontrado
+                      if chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable][indice_encontre] > float(splitted_line[1]):
+                        chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable][indice_encontre] = float(splitted_line[1])
+                      
+
+
 
             if inicializacion == 'greedy' and paper == 'alio':      
               chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(chart_tiempo_final)
@@ -185,25 +219,25 @@ for l1 in fst_lev_fld:
 # tabla_por_instancia.generar(res_greedy_maximo_por_instancia, res_tiempo_maximo_por_instancia)
 
 # Genero grafica de evolucion del fitness
-fitness_over_time.generar(chart_fitness_over_time)
+# fitness_over_time.generar(chart_fitness_over_time)
 
 # Genero grafica de mejora de greedy
-# ejecucion = {
-#   'chicas': {
-#     '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-#   },
-#   'medianas': {
-#     '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-#   },
-#   'grandes': {
-#     '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-#   },
-#   'montevideo': {
-#     '1': '1', '2': '1', '3': '1', '4': '1'
-#   }
-# }
-# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion)
-# grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion)
+ejecucion = {
+  'chicas': {
+    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+  },
+  'medianas': {
+    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+  },
+  'grandes': {
+    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+  },
+  'montevideo': {
+    '1': '1', '2': '1', '3': '1', '4': '1'
+  }
+}
+grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion)
+grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion)
 
 # Genero grafica de promedio/mejor costo
 # grafica_prom_best.generar(res_fitness)
