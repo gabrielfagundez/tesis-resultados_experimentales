@@ -7,6 +7,7 @@ import tabla_comparacion_greedy
 import fitness_over_time
 import grafica_prom_best
 import grafica_mejora_greedy
+import tabla_alio_vs_clei
 
 # Librerias
 import argparse
@@ -212,6 +213,9 @@ for l1 in fst_lev_fld:
 # Genero tabla comparacion de inicializaciones
 # tabla_comparacion_greedy.generar(res_fitness)
 
+# Genero tabla comparacion alio vs clei
+tabla_alio_vs_clei.generar(res_fitness)
+
 # Genero tabla por tamano
 # tabla_por_tamano.generar(res_greedy_maximo_por_tamano, res_tiempo_maximo_por_tamano)
 
@@ -222,20 +226,20 @@ for l1 in fst_lev_fld:
 # fitness_over_time.generar(chart_fitness_over_time)
 
 # Genero grafica de mejora de greedy
-ejecucion = {
-  'chicas': {
-    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-  },
-  'medianas': {
-    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-  },
-  'grandes': {
-    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-  },
-  'montevideo': {
-    '1': '1', '2': '1', '3': '1', '4': '1'
-  }
-}
+# ejecucion = {
+#   'chicas': {
+#     '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+#   },
+#   'medianas': {
+#     '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+#   },
+#   'grandes': {
+#     '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+#   },
+#   'montevideo': {
+#     '1': '1', '2': '1', '3': '1', '4': '1'
+#   }
+# }
 # grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'chicas', 'clei', 1)
 # grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'medianas', 'clei', 1)
 
