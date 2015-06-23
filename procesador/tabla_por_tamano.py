@@ -16,7 +16,7 @@ def generar(res_greedy, res_tiempo):
 
 
   header = ['', '', '', 'CLEI', 'ALIO']
-  print tabulate(arreglo_final, header, tablefmt="latex")
+  print tabulate(arreglo_final, header, tablefmt="fancy_grid")
 
   return ''
 
