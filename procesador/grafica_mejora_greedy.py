@@ -12,7 +12,7 @@ colors = ["#F7FF00","#DEF800","#C6F200","#AEEB00","#95E500","#7DDF00","#65D800",
 width = 1
 
 
-def generar(data, ejecucion, tamano, paper, label_location, data_estadisticas):
+def generar(data, tamano, paper, label_location, data_estadisticas):
 
   # Limpio la grafica
   plt.clf()
@@ -32,8 +32,6 @@ def generar(data, ejecucion, tamano, paper, label_location, data_estadisticas):
     labels_x.append(label_instancia)
     
     # Obtengo mejores valores y mejor ejecucion
-    greedy_costo    = 'greedy_costo'
-    greedy_demora   = 'greedy_demora'
     mejor_ejecucion = estadisticas.mejor_ejecucion(data_estadisticas, tamano, paper, num_instancia)
     mejora_final    = estadisticas.mejor_mejora_greedy(data_estadisticas, tamano, paper, num_instancia, mejor_ejecucion)
     bottom = 0.0
@@ -49,7 +47,7 @@ def generar(data, ejecucion, tamano, paper, label_location, data_estadisticas):
       bottom = bottom + tiempo_superacion_greedy
 
     # Dibujo texto superior
-    plt.text(indice_x, bottom, "%.1f%%"%(mejora_final), ha='center', va='bottom', rotation=90)
+    plt.text(indice_x, bottom, "%.1f%%"%(mejora_final), ha='center', va='bottom')
 
     # Paso a siguiente instancia
     indice_x+=1   

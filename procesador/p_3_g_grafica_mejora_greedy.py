@@ -110,48 +110,26 @@ for l1 in fst_lev_fld:
 
 
               # ========================= TIEMPO =========================
-              if pref_tiempo in line:
-                # Formato: ['TIEMPO', '0', '655.870000']
+              if pref_generacion in line:
+                # Formato: ['GEN', '0', '655.870000']
                 splitted_line = line.split('\n')[0].split(' ')
-                ultimo_tiempo = splitted_line[1]
-                val_final = float(splitted_line[2])
-
-                if inicializacion == 'greedy' and paper == 'clei':
+                generacion  = int(splitted_line[1])
+                fitness     = float(splitted_line[2])
+                
+                if inicializacion == 'greedy':
                   variable = file_name.split('.')[0].split('salida_')[1]
-                  chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[1]))
-                  chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[2]))
-                if inicializacion == 'greedy' and paper == 'alio':
-                  variable = file_name.split('.')[0].split('salida_')[1]
-                  num = float(splitted_line[1])
                   
-                  if chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable] == []:
-                    chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[1]))
-                    chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[2]))
-                  else:
-                    if num == int(num):
-                      # Caso de numero entero
-                      if chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable][-1] != float(splitted_line[1]):
-                        # Nuevo entero encontrado
-                        chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(float(splitted_line[1]))
-                        chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(float(splitted_line[2]))
-                      else:
-                        # Entero ya encontrado
-                        if float(splitted_line[2]) < chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable][-1]:
-                          chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable][-1] = float(splitted_line[2])
-
+                  if generacion == 0:
+                    chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable] = []
+                    chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(fitness)
+                  if generacion == 10000:
+                    if len(chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable]) == 1:
+                      chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(fitness)
                     else:
-                      # Caso final
-                      if chart_encontre_tiempo_final: 
-                        if float(splitted_line[1]) > chart_tiempo_final:
-                          chart_tiempo_final = float(splitted_line[1])
-                        if float(splitted_line[2]) < chart_fitness_final:
-                          chart_fitness_final = float(splitted_line[2])
-                      else:
-                        chart_encontre_tiempo_final = True
-                        chart_tiempo_final = float(splitted_line[1])
-                        chart_fitness_final = float(splitted_line[2])
+                      if fitness < chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable][-1]:
+                        chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable][-1] = fitness
 
-
+              
 
               # ========================= GREEDY =========================
               if pref_greedy in line:
@@ -189,51 +167,20 @@ for l1 in fst_lev_fld:
                         chart_mejora_greedy[tamano][instancia][paper]['fitness'][variable][indice_encontre] = float(splitted_line[1])
                       
 
-
-
-            if inicializacion == 'greedy' and paper == 'alio':      
-              chart_fitness_over_time[tamano][instancia][paper]['tiempo'][variable].append(chart_tiempo_final)
-              chart_fitness_over_time[tamano][instancia][paper]['fitness'][variable].append(chart_fitness_final)
-
             # Agrego valores para tabla comparativa
             res_fitness[tamano][instancia][paper][inicializacion].append(val_final)
-
-            # Agrego ultimo tiempo
-            if inicializacion == 'greedy':
-              # Informacion para tablas principales
-              res_tiempo_maximo_por_tamano[tamano][paper].append(float(ultimo_tiempo))
-              res_tiempo_maximo_por_instancia[tamano][instancia][paper].append(float(ultimo_tiempo))
-
-              # Calculo la mejora total sobre Greedy
-              mejora_greedy = (val_greedy - val_final) / val_greedy * 100
-              res_greedy_maximo_por_tamano[tamano][paper].append(mejora_greedy)
-              res_greedy_maximo_por_instancia[tamano][instancia][paper].append(mejora_greedy)
               
 
 # Genero grafica de mejora de greedy
-ejecucion = {
-  'chicas': {
-    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-  },
-  'medianas': {
-    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-  },
-  'grandes': {
-    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-  },
-  'montevideo': {
-    '1': '1', '2': '1', '3': '1', '4': '1'
-  }
-}
-grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'chicas', 'clei', 1, chart_fitness_over_time)
-# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'medianas', 'clei', 1)
-# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'grandes', 'clei', 1)
-# grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion, 'montevideo', 'clei', 2)
+grafica_mejora_greedy.generar(chart_mejora_greedy, 'chicas', 'clei', 1, chart_fitness_over_time)
+grafica_mejora_greedy.generar(chart_mejora_greedy, 'medianas', 'clei', 1, chart_fitness_over_time)
+grafica_mejora_greedy.generar(chart_mejora_greedy, 'grandes', 'clei', 1, chart_fitness_over_time)
+grafica_mejora_greedy.generar(chart_mejora_greedy, 'montevideo', 'clei', 2, chart_fitness_over_time)
 
-# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'chicas', 'alio', 1)
-# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'medianas', 'alio', 1)
-# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'grandes', 'alio', 2)
-# grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion, 'montevideo', 'alio', 1)
+grafica_mejora_greedy.generar(chart_mejora_greedy, 'chicas', 'alio', 1, chart_fitness_over_time)
+grafica_mejora_greedy.generar(chart_mejora_greedy, 'medianas', 'alio', 1, chart_fitness_over_time)
+grafica_mejora_greedy.generar(chart_mejora_greedy, 'grandes', 'alio', 2, chart_fitness_over_time)
+grafica_mejora_greedy.generar(chart_mejora_greedy, 'montevideo', 'alio', 1, chart_fitness_over_time)
 
 
 
