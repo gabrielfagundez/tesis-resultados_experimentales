@@ -210,48 +210,31 @@ for l1 in fst_lev_fld:
               res_greedy_maximo_por_instancia[tamano][instancia][paper].append(mejora_greedy)
               
 
-# Genero tabla comparacion de inicializaciones
-tabla_comparacion_greedy.generar(res_fitness)
-
-# Genero tabla comparacion alio vs clei
-# tabla_alio_vs_clei.generar(res_fitness)
-
-# Genero tabla por tamano
-# tabla_por_tamano.generar(res_greedy_maximo_por_tamano, res_tiempo_maximo_por_tamano)
-
-# Genero tabla por instancia
-# tabla_por_instancia.generar(res_greedy_maximo_por_instancia, res_tiempo_maximo_por_instancia)
-
-# Genero grafica de evolucion del fitness
-# fitness_over_time.generar(chart_fitness_over_time)
-
 # Genero grafica de mejora de greedy
-# ejecucion = {
-#   'chicas': {
-#     '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-#   },
-#   'medianas': {
-#     '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-#   },
-#   'grandes': {
-#     '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
-#   },
-#   'montevideo': {
-#     '1': '1', '2': '1', '3': '1', '4': '1'
-#   }
-# }
-# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'chicas', 'clei', 1)
+ejecucion = {
+  'chicas': {
+    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+  },
+  'medianas': {
+    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+  },
+  'grandes': {
+    '1': '1', '2': '1', '3': '1', '4': '1', '5': '1', '6': '1'
+  },
+  'montevideo': {
+    '1': '1', '2': '1', '3': '1', '4': '1'
+  }
+}
+grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'chicas', 'clei', 1, chart_fitness_over_time)
 # grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'medianas', 'clei', 1)
-
 # grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'grandes', 'clei', 1)
-# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'chicas', 'alio', 1)
+# grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion, 'montevideo', 'clei', 2)
 
+# grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'chicas', 'alio', 1)
 # grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'medianas', 'alio', 1)
 # grafica_mejora_greedy.generar(chart_mejora_greedy, ejecucion, 'grandes', 'alio', 2)
-
-# grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion, 'montevideo', 'clei', 2)
 # grafica_mejora_greedy.generar_montevideo(chart_mejora_greedy, ejecucion, 'montevideo', 'alio', 1)
 
-# Genero grafica de promedio/mejor costo
-# grafica_prom_best.generar(res_fitness)
-# grafica_prom_best.generar_montevideo(res_fitness)
+
+
+
