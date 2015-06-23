@@ -214,7 +214,7 @@ for l1 in fst_lev_fld:
 # tabla_comparacion_greedy.generar(res_fitness)
 
 # Genero tabla comparacion alio vs clei
-tabla_alio_vs_clei.generar(res_fitness)
+# tabla_alio_vs_clei.generar(res_fitness)
 
 # Genero tabla por tamano
 # tabla_por_tamano.generar(res_greedy_maximo_por_tamano, res_tiempo_maximo_por_tamano)

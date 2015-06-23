@@ -12,10 +12,10 @@ def generar(res_final):
   for tamano in ['chicas', 'medianas', 'grandes', 'montevideo']:
     for ins in ['1', '2', '3', '4', '5', '6']:
       if not(tamano == 'montevideo' and ins == '5' or tamano == 'montevideo' and ins == '6'):
-        best_greedy_clei    = numpy.max(res_final[tamano][ins]['clei']['greedy'])
-        best_aleatorio_clei = numpy.max(res_final[tamano][ins]['clei']['aleatorio'])
-        best_greedy_alio    = numpy.max(res_final[tamano][ins]['alio']['greedy'])
-        best_aleatorio_alio = numpy.max(res_final[tamano][ins]['alio']['aleatorio'])
+        best_greedy_clei    = numpy.min(res_final[tamano][ins]['clei']['greedy'])
+        best_aleatorio_clei = numpy.min(res_final[tamano][ins]['clei']['aleatorio'])
+        best_greedy_alio    = numpy.min(res_final[tamano][ins]['alio']['greedy'])
+        best_aleatorio_alio = numpy.min(res_final[tamano][ins]['alio']['aleatorio'])
 
         avg_greedy_clei    = numpy.mean(res_final[tamano][ins]['clei']['greedy'])
         avg_aleatorio_clei = numpy.mean(res_final[tamano][ins]['clei']['aleatorio'])
@@ -48,7 +48,7 @@ def generar(res_final):
         ]
         arreglo_final.append(arr)
 
-  print tabulate(arreglo_final, tablefmt="latex")
+  print tabulate(arreglo_final, tablefmt="fancy_grid")
 
   return 0;
   

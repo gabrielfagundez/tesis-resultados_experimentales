@@ -15,15 +15,15 @@ def generar(res_final):
         # best_greedy_alio    = numpy.max(res_final[tamano][ins]['alio']['greedy'])
         # best_aleatorio_alio = numpy.max(res_final[tamano][ins]['alio']['aleatorio'])
 
-        avg_greedy_clei    = numpy.mean(res_final[tamano][ins]['clei']['greedy'])
-        avg_aleatorio_clei = numpy.mean(res_final[tamano][ins]['clei']['aleatorio'])
-        avg_greedy_alio    = numpy.mean(res_final[tamano][ins]['alio']['greedy'])
-        avg_aleatorio_alio = numpy.mean(res_final[tamano][ins]['alio']['aleatorio'])
+        avg_greedy_clei    = round(numpy.mean(res_final[tamano][ins]['clei']['greedy']), 1)
+        avg_aleatorio_clei = round(numpy.mean(res_final[tamano][ins]['clei']['aleatorio']), 1)
+        avg_greedy_alio    = round(numpy.mean(res_final[tamano][ins]['alio']['greedy']), 1)
+        avg_aleatorio_alio = round(numpy.mean(res_final[tamano][ins]['alio']['aleatorio']), 1)
 
-        de_greedy_clei    = numpy.std(res_final[tamano][ins]['clei']['greedy'])
-        de_aleatorio_clei = numpy.std(res_final[tamano][ins]['clei']['aleatorio'])
-        de_greedy_alio    = numpy.std(res_final[tamano][ins]['alio']['greedy'])
-        de_aleatorio_alio = numpy.std(res_final[tamano][ins]['alio']['aleatorio'])
+        de_greedy_clei    = round(numpy.std(res_final[tamano][ins]['clei']['greedy']), 1)
+        de_aleatorio_clei = round(numpy.std(res_final[tamano][ins]['clei']['aleatorio']), 1)
+        de_greedy_alio    = round(numpy.std(res_final[tamano][ins]['alio']['greedy']), 1)
+        de_aleatorio_alio = round(numpy.std(res_final[tamano][ins]['alio']['aleatorio']), 1)
 
         if res_final[tamano][ins]['clei']['greedy'] == res_final[tamano][ins]['alio']['greedy']:
           kruskal = 1.0
@@ -37,7 +37,7 @@ def generar(res_final):
         ]
         arreglo_final.append(arr)
 
-  print tabulate(arreglo_final, tablefmt="fancy_grid")
+  print tabulate(arreglo_final, tablefmt="latex")
 
   return 0;
   
